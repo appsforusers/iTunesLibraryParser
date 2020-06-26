@@ -6,6 +6,7 @@ namespace ITunesLibraryParser {
     public class Playlist : IEquatable<Playlist> {
         public int PlaylistId { get; set; }
         public string Name { get; set; }
+        public bool IsSmartPlaylist { get; set; }
         public IEnumerable<Track> Tracks { get; set; }
 
         public override string ToString() {

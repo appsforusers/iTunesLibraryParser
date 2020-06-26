@@ -21,8 +21,19 @@ namespace ITunesLibraryParser {
             return new Playlist {
                 PlaylistId = int.Parse(XElementParser.ParseStringValue(playlistElement, "Playlist ID")),
                 Name = XElementParser.ParseStringValue(playlistElement, "Name"),
+                IsSmartPlaylist = IsSmartPlaylist(playlistElement),
                 Tracks = FindTracksInLibrary(playlistElement)
             };
+        }
+
+        private bool IsSmartPlaylist(XElement playListElement) {
+            try {
+                string value = XElementParser.ParseStringValue(playListElement, "Smart Info");
+                return value != null;
+            }
+            catch (System.Exception) {
+                return false;
+            }
         }
 
         private IEnumerable<Track> FindTracksInLibrary(XElement playlistElement) {
